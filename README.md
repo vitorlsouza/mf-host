@@ -11,7 +11,7 @@ cd mf-host
 pnpm install
 
 # Start development servers
-pnpm dev
+pnpm start
 ```
 
 ### 🌐 Access the Applications

@@ -1,12 +1,20 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 
-import "./index.css";
+const RemoteCard = React.lazy(() => import("remote/Card"));
+const Button = React.lazy(() => import("remote/Button"));
 
 const App = () => (
   <div className="mt-10 text-3xl mx-auto max-w-6xl">
     <div>Name: host</div>
-    <div>Framework: react-18</div>
+    <Suspense fallback={<div>Loading Card...</div>}>
+      <RemoteCard title="Shared Component">
+        This card is being loaded from the remote micro-frontend!
+        <br />
+        Demonstration of Module Federation working. 🚀
+      </RemoteCard>
+      <Button>Click me</Button>
+    </Suspense>
   </div>
 );
 

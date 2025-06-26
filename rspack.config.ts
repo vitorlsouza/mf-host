@@ -8,11 +8,11 @@ import { withZephyr } from "zephyr-rspack-plugin";
 import { mfConfig } from "./module-federation.config";
 
 const isDev = process.env.NODE_ENV === "development";
+const disableZephyr = process.env.DISABLE_ZEPHYR === "true";
 
-// Target browsers, see: https://github.com/browserslist/browserslist
 const targets = ["chrome >= 87", "edge >= 88", "firefox >= 78", "safari >= 14"];
 
-export default withZephyr()({
+const config = {
   context: __dirname,
   entry: {
     main: "./src/index.ts",
@@ -88,4 +88,6 @@ export default withZephyr()({
       }),
     ],
   },
-});
+};
+
+export default disableZephyr ? defineConfig(config) : withZephyr()(config);
